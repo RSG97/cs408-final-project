@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for Feedback Board">
+    <title>Register - Feedback Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">Feedback Board</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="submit-feedback.html">Submit Feedback</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html" class="active">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                <h2>Create Account</h2>
+                <p>Join our community and start sharing feedback!</p>
+
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-username">Username:</label>
+                        <input 
+                            type="text" 
+                            id="register-username" 
+                            name="username" 
+                            required 
+                            aria-required="true"
+                            minlength="3"
+                            maxlength="20"
+                            placeholder="Choose a username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-email">Email:</label>
+                        <input 
+                            type="email" 
+                            id="register-email" 
+                            name="email" 
+                            required 
+                            aria-required="true"
+                            placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-password">Password:</label>
+                        <input 
+                            type="password" 
+                            id="register-password" 
+                            name="password" 
+                            required 
+                            aria-required="true"
+                            minlength="8"
+                            placeholder="Create a password (min 8 characters)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password:</label>
+                        <input 
+                            type="password" 
+                            id="register-confirm-password" 
+                            name="confirm-password" 
+                            required 
+                            aria-required="true"
+                            minlength="8"
+                            placeholder="Re-enter your password">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Create Account</button>
+                    </div>
+                </form>
+
+                <div id="register-message" class="form-message"></div>
+
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Feedback Board. All rights reserved.</p>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+</html>
