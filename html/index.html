@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product Feedback Board - View and vote on feature requests">
+    <title>Feedback Board - Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">Feedback Board</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="submit-feedback.html">Submit Feedback</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h2>Product Feedback</h2>
+            <p>View, vote, and comment on feedback from our community</p>
+        </section>
+
+        <section class="filter-section">
+            <div class="filter-container">
+                <label for="filter-dropdown">Filter By:</label>
+                <select id="filter-dropdown" name="filter">
+                    <option value="all">All Feedback</option>
+                    <option value="bug">Bug</option>
+                    <option value="feature">Feature Request</option>
+                    <option value="enhancement">Enhancement</option>
+                    <option value="ui-ux">UI/UX</option>
+                    <option value="planned">Planned</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="under-review">Under Review</option>
+                    <option value="my-submissions">My Submissions</option>
+                </select>
+                <button id="load-feedback-btn" type="button">Load Feedback</button>
+            </div>
+        </section>
+
+        <section class="feedback-list">
+            <div id="feedback-container">
+                <!-- Feedback items will be dynamically loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Feedback Board. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

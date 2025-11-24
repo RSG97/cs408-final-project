@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View feedback details and comments">
+    <title>Feedback Details - Feedback Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">Feedback Board</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="submit-feedback.html">Submit Feedback</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="feedback-detail">
+            <div id="feedback-content">
+                <!-- Feedback details will be loaded here -->
+                <div class="feedback-header">
+                    <button id="back-btn" type="button">← Back to Feed</button>
+                </div>
+                
+                <div class="feedback-main">
+                    <div class="vote-section">
+                        <button id="upvote-btn" type="button" aria-label="Upvote this feedback">▲</button>
+                        <span id="vote-count" class="vote-count">0</span>
+                    </div>
+                    
+                    <div class="feedback-info">
+                        <h2 id="feedback-title">Loading...</h2>
+                        <div class="feedback-meta">
+                            <span id="feedback-category" class="category-tag">Category</span>
+                            <span id="feedback-status" class="status-tag">Status</span>
+                            <span id="feedback-author" class="author">Posted by: Username</span>
+                            <span id="feedback-date" class="date">Date</span>
+                        </div>
+                        <p id="feedback-description" class="description">Loading description...</p>
+                        <button id="delete-feedback-btn" type="button" class="delete-btn">Delete Feedback</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="comments-section">
+            <h3>Comments</h3>
+            
+            <form id="comment-form" class="comment-form">
+                <label for="comment-text">Add a comment:</label>
+                <textarea id="comment-text" name="comment" rows="4" required aria-required="true"></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+
+            <div id="comments-container" class="comments-list">
+                <!-- Comments will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Feedback Board. All rights reserved.</p>
+    </footer>
+
+    <script src="feedback-detail.js"></script>
+</body>
+</html>
