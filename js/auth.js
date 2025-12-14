@@ -1,6 +1,6 @@
 // auth.js - Handles user authentication (login and registration)
 
-const API_BASE_URL = 'YOUR_API_GATEWAY_URL'; // TODO: Replace with actual API Gateway URL
+const API_BASE_URL = 'https://rnhmcguiqa.execute-api.us-east-2.amazonaws.com/prod';
 
 // ===== Input Sanitization Functions =====
 
@@ -147,36 +147,15 @@ function isUserLoggedIn() {
  * @returns {Promise<object>} - API response
  */
 async function registerUserAPI(userData) {
-    // TODO: Replace with actual API Gateway call
-    // For now, simulate API call with setTimeout
-    
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Simulated response - replace with actual fetch call
-            const response = {
-                success: true,
-                message: 'User registered successfully',
-                userId: 'user-' + Date.now(),
-                username: userData.username,
-                email: userData.email
-            };
-            resolve(response);
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            fetch(`${API_BASE_URL}/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData)
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
-        }, 500);
+    const response = await fetch(`${API_BASE_URL}/register`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
     });
+    
+    return await response.json();
 }
 
 /**
@@ -185,36 +164,15 @@ async function registerUserAPI(userData) {
  * @returns {Promise<object>} - API response
  */
 async function loginUserAPI(credentials) {
-    // TODO: Replace with actual API Gateway call
-    // For now, simulate API call
-    
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Simulated response - replace with actual fetch call
-            const response = {
-                success: true,
-                message: 'Login successful',
-                userId: 'user-' + Date.now(),
-                username: 'testuser',
-                email: credentials.email
-            };
-            resolve(response);
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            fetch(`${API_BASE_URL}/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(credentials)
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
-        }, 500);
+    const response = await fetch(`${API_BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials)
     });
+    
+    return await response.json();
 }
 
 // ===== Registration Form Handler =====

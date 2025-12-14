@@ -1,7 +1,7 @@
 // submit-feedback.js - Handles feedback submission
 
-// Configuration - API Gateway endpoint (will be added later)
-const API_BASE_URL = 'YOUR_API_GATEWAY_URL'; // TODO: Replace with actual API Gateway URL
+// Configuration - API Gateway endpoint
+const API_BASE_URL = 'https://rnhmcguiqa.execute-api.us-east-2.amazonaws.com/prod';
 
 // ===== Input Sanitization Functions =====
 
@@ -100,34 +100,15 @@ function getCurrentUser() {
  * @returns {Promise<object>} - API response
  */
 async function submitFeedbackAPI(feedbackData) {
-    // TODO: Replace with actual API Gateway call
-    // For now, simulate API call
-    
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Simulated response - replace with actual fetch call
-            const response = {
-                success: true,
-                message: 'Feedback submitted successfully',
-                feedbackId: 'fb-' + Date.now()
-            };
-            resolve(response);
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            fetch(`${API_BASE_URL}/feedback`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(feedbackData)
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
-        }, 500);
+    const response = await fetch(`${API_BASE_URL}/feedback`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedbackData)
     });
+    
+    return await response.json();
 }
 
 // ===== Form Handler =====

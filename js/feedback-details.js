@@ -1,7 +1,7 @@
 // feedback-detail.js - Handles feedback detail page
 
-// Configuration - API Gateway endpoint (will be added later)
-const API_BASE_URL = 'YOUR_API_GATEWAY_URL'; // TODO: Replace with actual API Gateway URL
+// Configuration - API Gateway endpoint
+const API_BASE_URL = 'https://rnhmcguiqa.execute-api.us-east-2.amazonaws.com/prod';
 
 // Store current feedback ID
 let currentFeedbackId = null;
@@ -72,42 +72,14 @@ function validateComment(comment) {
  * @returns {Promise<object>} - API response
  */
 async function getFeedbackAPI(feedbackId) {
-    // TODO: Replace with actual API Gateway call
-    
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Mock feedback data
-            const mockFeedback = {
-                feedbackId: feedbackId,
-                title: 'Add dark mode support',
-                description: 'It would be great to have a dark mode option for better viewing at night. This would help reduce eye strain and save battery on mobile devices.',
-                category: 'feature',
-                status: 'under-review',
-                userId: 'user-123',
-                username: 'johndoe',
-                voteCount: 15,
-                createdAt: '2024-12-01T10:30:00Z'
-            };
-            
-            resolve({
-                success: true,
-                feedback: mockFeedback
-            });
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            fetch(`${API_BASE_URL}/feedback/${feedbackId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
-        }, 300);
+    const response = await fetch(`${API_BASE_URL}/feedback/${feedbackId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
     });
+    
+    return await response.json();
 }
 
 /**
@@ -117,32 +89,14 @@ async function getFeedbackAPI(feedbackId) {
  * @returns {Promise<object>} - API response
  */
 async function toggleVoteAPI(feedbackId, userId) {
-    // TODO: Replace with actual API Gateway call
-    
-    return new Promise((resolve, reject) => {
+    // Mock - voting not implemented yet (stretch goal)
+    return new Promise((resolve) => {
         setTimeout(() => {
-            // Mock response - in real implementation, this would check if vote exists
-            const response = {
+            resolve({
                 success: true,
-                action: 'voted', // or 'unvoted'
+                action: 'voted',
                 newVoteCount: 16
-            };
-            
-            resolve(response);
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            fetch(`${API_BASE_URL}/vote`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ feedbackId, userId })
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
+            });
         }, 300);
     });
 }
@@ -153,48 +107,14 @@ async function toggleVoteAPI(feedbackId, userId) {
  * @returns {Promise<object>} - API response with comments
  */
 async function getCommentsAPI(feedbackId) {
-    // TODO: Replace with actual API Gateway call
-    
-    return new Promise((resolve, reject) => {
+    // Mock - comments not implemented yet (stretch goal)
+    return new Promise((resolve) => {
         setTimeout(() => {
-            // Mock comments data
-            const mockComments = [
-                {
-                    commentId: 'comment-001',
-                    feedbackId: feedbackId,
-                    userId: 'user-456',
-                    username: 'janedoe',
-                    commentText: 'This is a great idea! I would definitely use dark mode.',
-                    createdAt: '2024-12-02T11:15:00Z'
-                },
-                {
-                    commentId: 'comment-002',
-                    feedbackId: feedbackId,
-                    userId: 'user-789',
-                    username: 'bobsmith',
-                    commentText: 'Please make sure it works on mobile too!',
-                    createdAt: '2024-12-03T09:30:00Z'
-                }
-            ];
-            
             resolve({
                 success: true,
-                comments: mockComments,
-                count: mockComments.length
+                comments: [],
+                count: 0
             });
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            fetch(`${API_BASE_URL}/comments/${feedbackId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
         }, 300);
     });
 }
@@ -205,31 +125,14 @@ async function getCommentsAPI(feedbackId) {
  * @returns {Promise<object>} - API response
  */
 async function submitCommentAPI(commentData) {
-    // TODO: Replace with actual API Gateway call
-    
-    return new Promise((resolve, reject) => {
+    // Mock - comments not implemented yet (stretch goal)
+    return new Promise((resolve) => {
         setTimeout(() => {
-            const response = {
+            resolve({
                 success: true,
                 message: 'Comment posted successfully',
                 commentId: 'comment-' + Date.now()
-            };
-            
-            resolve(response);
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            fetch(`${API_BASE_URL}/comments`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(commentData)
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
+            });
         }, 300);
     });
 }
@@ -241,32 +144,15 @@ async function submitCommentAPI(commentData) {
  * @returns {Promise<object>} - API response
  */
 async function deleteFeedbackAPI(feedbackId, userId) {
-    // TODO: Replace with actual API Gateway call
-    
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const response = {
-                success: true,
-                message: 'Feedback deleted successfully'
-            };
-            
-            resolve(response);
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            fetch(`${API_BASE_URL}/feedback/${feedbackId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userId })
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
-        }, 300);
+    const response = await fetch(`${API_BASE_URL}/feedback/${feedbackId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId })
     });
+    
+    return await response.json();
 }
 
 // ===== Display Functions =====

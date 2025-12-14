@@ -1,7 +1,7 @@
 // app.js - Main feed page functionality
 
-// Configuration - API Gateway endpoint (will be added later)
-const API_BASE_URL = 'YOUR_API_GATEWAY_URL'; // TODO: Replace with actual API Gateway URL
+// Configuration - API Gateway endpoint
+const API_BASE_URL = 'https://rnhmcguiqa.execute-api.us-east-2.amazonaws.com/prod';
 
 // ===== Session Helper =====
 
@@ -27,110 +27,36 @@ function getCurrentUser() {
  * @returns {Promise<object>} - API response with feedback array
  */
 async function loadFeedbackAPI(filter = 'all') {
-    // TODO: Replace with actual API Gateway call
-    // This will use query parameters for conditional retrieval
+    let url = `${API_BASE_URL}/feedback`;
     
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Simulated feedback data - replace with actual fetch call
-            const mockFeedback = [
-                {
-                    feedbackId: 'fb-001',
-                    title: 'Add dark mode support',
-                    description: 'It would be great to have a dark mode option for better viewing at night',
-                    category: 'feature',
-                    status: 'under-review',
-                    userId: 'user-123',
-                    username: 'johndoe',
-                    voteCount: 15,
-                    createdAt: '2024-12-01T10:30:00Z'
-                },
-                {
-                    feedbackId: 'fb-002',
-                    title: 'Fix login button alignment',
-                    description: 'The login button appears misaligned on mobile devices',
-                    category: 'bug',
-                    status: 'in-progress',
-                    userId: 'user-456',
-                    username: 'janedoe',
-                    voteCount: 8,
-                    createdAt: '2024-12-05T14:20:00Z'
-                },
-                {
-                    feedbackId: 'fb-003',
-                    title: 'Improve search performance',
-                    description: 'Search results take too long to load with large datasets',
-                    category: 'enhancement',
-                    status: 'planned',
-                    userId: 'user-789',
-                    username: 'bobsmith',
-                    voteCount: 23,
-                    createdAt: '2024-12-03T09:15:00Z'
-                }
-            ];
-            
-            // Filter based on selection
-            let filteredFeedback = mockFeedback;
-            
-            if (filter !== 'all') {
-                const user = getCurrentUser();
-                
-                // Filter by category
-                if (['bug', 'feature', 'enhancement', 'ui-ux'].includes(filter)) {
-                    filteredFeedback = mockFeedback.filter(fb => fb.category === filter);
-                }
-                // Filter by status
-                else if (['planned', 'in-progress', 'completed', 'under-review'].includes(filter)) {
-                    filteredFeedback = mockFeedback.filter(fb => fb.status === filter);
-                }
-                // Filter by user's submissions
-                else if (filter === 'my-submissions' && user) {
-                    filteredFeedback = mockFeedback.filter(fb => fb.userId === user.userId);
-                }
+    // Add query parameters for filtering
+    if (filter !== 'all') {
+        const params = new URLSearchParams();
+        
+        if (['bug', 'feature', 'enhancement', 'ui-ux'].includes(filter)) {
+            params.append('category', filter);
+        } else if (['planned', 'in-progress', 'completed', 'under-review'].includes(filter)) {
+            params.append('status', filter);
+        } else if (filter === 'my-submissions') {
+            const user = getCurrentUser();
+            if (user) {
+                params.append('userId', user.userId);
             }
-            
-            const response = {
-                success: true,
-                feedback: filteredFeedback,
-                count: filteredFeedback.length
-            };
-            
-            resolve(response);
-            
-            // Example of actual API call (uncomment when ready):
-            /*
-            let url = `${API_BASE_URL}/feedback`;
-            
-            // Add query parameters for filtering
-            if (filter !== 'all') {
-                const params = new URLSearchParams();
-                
-                if (['bug', 'feature', 'enhancement', 'ui-ux'].includes(filter)) {
-                    params.append('category', filter);
-                } else if (['planned', 'in-progress', 'completed', 'under-review'].includes(filter)) {
-                    params.append('status', filter);
-                } else if (filter === 'my-submissions') {
-                    const user = getCurrentUser();
-                    if (user) {
-                        params.append('userId', user.userId);
-                    }
-                }
-                
-                url += '?' + params.toString();
-            }
-            
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-            */
-        }, 500);
+        }
+        
+        if (params.toString()) {
+            url += '?' + params.toString();
+        }
+    }
+    
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
     });
+    
+    return await response.json();
 }
 
 // ===== Display Functions =====
