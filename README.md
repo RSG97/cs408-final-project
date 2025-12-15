@@ -15,6 +15,88 @@ The application will manage several types of user-generated dynamic data. First 
 ### Stretch Goals?
 Stretch goals include implementing an admin dashboard for product team members to manage feedback status and add official responses, which would create a distinction between regular users and team members who can moderate and update content. Email notifications could be added to alert users when feedback items they submitted or voted on receive status updates, new comments, or official responses from the team. Image upload capability would allow users to attach screenshots to bug reports or mockups to feature requests, potentially making feedback easier to understand. User profile pages would display a history of all feedback submissions and comments from individual users, which may allow users to build reputations as valuable contributors.
 
+---
+
+## Setup Instructions
+
+### Prerequisites
+- Node.js installed (version 18 or higher)
+- npm (comes with Node.js)
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+
+### Installation Steps
+
+1. **Clone the repository:**
+```bash
+   git clone 
+   cd feedback-app
+```
+
+2. **Install dependencies:**
+```bash
+   npm install
+```
+
+---
+
+## Running Tests
+
+### Run all tests:
+```bash
+npm test
+```
+
+### Run tests with coverage report:
+```bash
+npm run test:coverage
+```
+
+---
+
+## Running the Application
+
+It is recommended to use the VSCode Live Server extension to run the project
+locally. This will allow you to see changes in real-time as you make them. There
+is no need to run a build process or refresh the page manually. Additionally,
+you do not need to setup a local server to run the project.
+
+---
+
+## Using the Application
+
+### 1. Register a New Account
+- Click "Register" in the navigation
+- Fill out the registration form:
+  - Username (3-20 characters)
+  - Email (valid email format)
+  - Password (minimum 8 characters)
+- Click "Create Account"
+
+### 2. Login
+- Click "Login" in the navigation
+- Enter your email and password
+- Click "Login"
+- You'll be redirected to the home page
+
+### 3. Submit Feedback
+- Click "Submit Feedback" in the navigation
+- Fill out the form:
+  - Title (5-100 characters)
+  - Description (10-1000 characters)
+  - Category (Bug, Feature Request, Enhancement, UI/UX)
+- Click "Submit Feedback"
+
+### 4. View and Filter Feedback
+- On the home page, click "Load Feedback" to see all items
+- Use the filter dropdown to view specific categories, statuses, or your own submissions
+- Click on any feedback item to view details
+
+### 5. Delete Feedback
+- Click on a feedback item you created
+- Click the "Delete Feedback" button
+- Confirm deletion
+- The item will be removed from the database
 
 
+## Original Wireframe Design
 ![wireframe](Main_Feedback.png)

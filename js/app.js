@@ -19,7 +19,7 @@ function getCurrentUser() {
     return null;
 }
 
-// ===== API Call Functions (Placeholders for AWS Lambda) =====
+// ===== API Call Functions (Placeholders for now) =====
 
 /**
  * Load all feedback from AWS

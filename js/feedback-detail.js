@@ -64,7 +64,7 @@ function validateComment(comment) {
     return { valid: true, message: '' };
 }
 
-// ===== API Call Functions (Placeholders for AWS Lambda) =====
+// ===== API Call Functions (Placeholders for now) =====
 
 /**
  * Get single feedback item by ID
