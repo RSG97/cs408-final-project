@@ -405,9 +405,44 @@ async function loadComments() {
     }
 }
 
+// ===== Update Navigation (Show/Hide Login/Register based on auth status) =====
+
+/**
+ * Update navigation links based on login status
+ */
+function updateNavigation() {
+    const user = getCurrentUser();
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (user && navLinks) {
+        // User is logged in - show username and logout option
+        const loginLink = navLinks.querySelector('a[href="login.html"]');
+        const registerLink = navLinks.querySelector('a[href="register.html"]');
+        
+        if (loginLink) {
+            loginLink.textContent = `Hello, ${user.username}`;
+            loginLink.href = '#';
+            loginLink.style.cursor = 'default';
+        }
+        
+        if (registerLink) {
+            registerLink.textContent = 'Logout';
+            registerLink.href = '#';
+            registerLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.clear();
+                window.location.href = 'index.html';
+            });
+        }
+    }
+}
+
 // ===== Initialize =====
 
 document.addEventListener('DOMContentLoaded', async function() {
+    // Add this line first:
+    updateNavigation();
+
     // Get feedback ID from URL
     currentFeedbackId = getFeedbackIdFromURL();
     

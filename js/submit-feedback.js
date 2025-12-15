@@ -205,9 +205,39 @@ function handleCancel() {
     window.location.href = 'index.html';
 }
 
+// ===== Update Navigation =====
+
+function updateNavigation() {
+    const user = getCurrentUser();
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (user && navLinks) {
+        const loginLink = navLinks.querySelector('a[href="login.html"]');
+        const registerLink = navLinks.querySelector('a[href="register.html"]');
+        
+        if (loginLink) {
+            loginLink.textContent = `Hello, ${user.username}`;
+            loginLink.href = '#';
+            loginLink.style.cursor = 'default';
+        }
+        
+        if (registerLink) {
+            registerLink.textContent = 'Logout';
+            registerLink.href = '#';
+            registerLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.clear();
+                window.location.href = 'index.html';
+            });
+        }
+    }
+}
+
 // ===== Initialize Event Listeners =====
 
 document.addEventListener('DOMContentLoaded', function() {
+    updateNavigation();
+
     const feedbackForm = document.getElementById('feedback-form');
     const cancelBtn = document.getElementById('cancel-btn');
     
